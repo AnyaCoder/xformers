@@ -26,7 +26,7 @@ on:
 
 env:
   FORCE_CUDA: 1
-  MAX_JOBS: 1
+  MAX_JOBS: 6
   DISTUTILS_USE_SDK: 1 # otherwise distutils will complain on windows about multiple versions of msvc
   XFORMERS_BUILD_TYPE: "Release"
   
@@ -43,12 +43,16 @@ jobs:
         pyver: ["3.10"]
         cuda: ["12.4.0"]
         torchver: ["2.4.0-dev"]
+        arch:
+          - "8.0"
+          - "7.0"
     defaults:
       run:
         shell: pwsh
     env:
         CUDAVER: ${{ matrix.cuda }}
         PCKGVER: ${{ inputs.version }}
+        TORCH_CUDA_ARCH_LIST: ${{ matrix.arch }}
 
     steps:
       - uses: actions/checkout@v4
@@ -120,7 +124,7 @@ jobs:
           $env:CUDA_PATH = $env:CONDA_PREFIX
           $env:CUDA_HOME = $env:CONDA_PREFIX
           
-          $env:MAX_JOBS = '1'
+          $env:MAX_JOBS = '6'
           $env:FLASH_ATTENTION_FORCE_BUILD = 'TRUE'
           $env:FLASH_ATTENTION_FORCE_CXX11_ABI = 'FALSE'
           $env:BUILD_TARGET = "cuda"
