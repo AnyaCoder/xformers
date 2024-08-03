@@ -53,6 +53,7 @@ jobs:
         CUDAVER: ${{ matrix.cuda }}
         PCKGVER: ${{ inputs.version }}
         TORCH_CUDA_ARCH_LIST: ${{ matrix.arch }}
+        BUILD_VERSION: '0.0.27'
 
     steps:
       - uses: actions/checkout@v4
@@ -130,10 +131,6 @@ jobs:
           $env:BUILD_TARGET = "cuda"
 
           python setup.py bdist_wheel --dist-dir=dist
-          
-          $wheel = (gi '.\dist\*.whl')[0]
-          $wheelname = $wheel.name.replace("xformers-$packageVersion-","xformers-$packageVersion+cu$cudaVersion"+"torch${{ matrix.torchver }}cxx11abiFALSE-")
-          Move-Item $wheel.fullname ".\dist\$wheelname"
 
       - uses: actions/upload-artifact@v3
         with:
