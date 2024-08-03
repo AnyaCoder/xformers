@@ -42,7 +42,7 @@ jobs:
       matrix:
         pyver: ["3.10"]
         cuda: ["12.4.0"]
-        torchver: ["2.4.0-dev"]
+        torchver: ["2.4.0.dev20240427"]
         arch:
           - "8.0"
           - "7.0"
