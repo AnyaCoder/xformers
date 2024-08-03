@@ -35,7 +35,7 @@ permissions:
 
 jobs:
   build_wheels:
-    name: Build wheels for Python ${{ matrix.pyver }}, CUDA ${{ matrix.cuda }}, and Torch ${{ matrix.torchver }}
+    name: Build wheels for Python ${{ matrix.pyver }}, CUDA ${{ matrix.cuda }}, and Torch ${{ matrix.torchver }}, and arch ${{ matrix.arch }}
     runs-on: windows-2022
     strategy:
       fail-fast: false
