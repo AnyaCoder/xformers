@@ -316,7 +316,7 @@ def get_extensions():
 
     define_macros = []
 
-    extra_compile_args = {"cxx": ["-O3", "-std=c++17"]}
+    extra_compile_args = {"cxx": ["/O2", "/std:c++17"]}
     if sys.platform == "win32":
         define_macros += [("xformers_EXPORTS", None)]
         extra_compile_args["cxx"].extend(
@@ -436,7 +436,7 @@ def get_extensions():
 
         cc_flag = ["-DBUILD_PYTHON_PACKAGE"]
         extra_compile_args = {
-            "cxx": ["-O3", "-std=c++17"] + generator_flag,
+            "cxx": ["/O2", "/std:c++17"] + generator_flag,
             "nvcc": [
                 "-O3",
                 "-std=c++17",
