@@ -13,20 +13,20 @@ on:
     inputs:
       version:
         description: 'Version tag of xformers to build: (format: v0.0.27/v0.0.27.post1)'
-        default: 'v0.0.27'
+        default: 'v0.0.28-arch8.9-8.6'
         required: true
         type: string
   workflow_call:
     inputs:
       version:
         description: 'Version tag of xformers to build (format: v0.0.27/v0.0.27.post1)'
-        default: 'v0.0.27'
+        default: 'v0.0.28-arch8.9-8.6'
         required: true
         type: string
 
 env:
   FORCE_CUDA: 1
-  MAX_JOBS: 6
+  MAX_JOBS: 4
   DISTUTILS_USE_SDK: 1 # otherwise distutils will complain on windows about multiple versions of msvc
   XFORMERS_BUILD_TYPE: "Release"
   
@@ -44,8 +44,8 @@ jobs:
         cuda: ["12.4.0"]
         torchver: ["2.4.0.dev20240427"]
         arch:
-          - "8.0"
-          - "7.0"
+          - "8.9"
+          - "8.6"
     defaults:
       run:
         shell: pwsh
@@ -125,7 +125,7 @@ jobs:
           $env:CUDA_PATH = $env:CONDA_PREFIX
           $env:CUDA_HOME = $env:CONDA_PREFIX
           
-          $env:MAX_JOBS = '6'
+          $env:MAX_JOBS = '4'
           $env:FLASH_ATTENTION_FORCE_BUILD = 'TRUE'
           $env:FLASH_ATTENTION_FORCE_CXX11_ABI = 'FALSE'
           $env:BUILD_TARGET = "cuda"
