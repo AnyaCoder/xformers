@@ -13,14 +13,14 @@ on:
     inputs:
       version:
         description: 'Version tag of xformers to build: (format: v0.0.27/v0.0.27.post1)'
-        default: 'v0.0.28-arch8.9-8.6'
+        default: 'v0.0.28-arch8.9'
         required: true
         type: string
   workflow_call:
     inputs:
       version:
         description: 'Version tag of xformers to build (format: v0.0.27/v0.0.27.post1)'
-        default: 'v0.0.28-arch8.9-8.6'
+        default: 'v0.0.28-arch8.9'
         required: true
         type: string
 
@@ -45,7 +45,7 @@ jobs:
         torchver: ["2.4.0.dev20240427"]
         arch:
           - "8.9"
-          - "8.6"
+
     defaults:
       run:
         shell: pwsh
